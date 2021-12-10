@@ -34,61 +34,73 @@ The solution is to leverage the Lambda context and call AppConfig only once unti
 
 EXECUTION 1 - COLD START
 
+```
 START RequestId: daefa720-eab3-40d9-b982-db2f52002bfb Version: $LATEST
-[appconfig agent] 2021/12/10 14:03:51 INFO AppConfig Lambda Extension 2.0.15
-[appconfig agent] 2021/12/10 14:03:52 INFO serving on port 2772
+[appconfig agent] INFO AppConfig Lambda Extension 2.0.15
+[appconfig agent] INFO serving on port 2772
 EXTENSION Name: AppConfigAgent State: Ready Events: [INVOKE,SHUTDOWN]
 
 we get the config
 INFO [handler] URL "http://localhost:2772/applications/MyTestApplication/environments/MyTestEnvironment/configurations/MyTestProfile"
 
 REPORT RequestId: daefa720-eab3-40d9-b982-db2f52002bfb Duration: 286.35
+```
 
 EXECUTION 2 - WARM STATE
 
+```
 START RequestId: 1d66614c-3272-40ec-a17b-dea81c353097 Version: $LATEST
 we get the config
 INFO [handler] URL "http://localhost:2772/applications/MyTestApplication/environments/MyTestEnvironment/configurations/MyTestProfile"
 
 REPORT RequestId: 1d66614c-3272-40ec-a17b-dea81c353097 Duration: 192.21 ms 
+```
 
 EXECUTION 3 - WARM STATE
 
+```
 START RequestId: d7b1508e-e95f-4f49-9b44-f5768372a674 Version: $LATEST
 we get the config
 INFO [handler] URL "http://localhost:2772/applications/MyTestApplication/environments/MyTestEnvironment/configurations/MyTestProfile"
 
 REPORT RequestId: d7b1508e-e95f-4f49-9b44-f5768372a674 Duration: 187.56 ms
+```
 
 ### Using the Lambda Context ###
 
 EXECUTION 1 - COLD START
 
+```
 START RequestId: cd5ccc81-6ff5-4fa2-8a38-e708e833cde9 Version: $LATEST
-[appconfig agent] 2021/12/10 14:03:51 INFO AppConfig Lambda Extension 2.0.15
-[appconfig agent] 2021/12/10 14:03:52 INFO serving on port 2772
+[appconfig agent] INFO AppConfig Lambda Extension 2.0.15
+[appconfig agent] INFO serving on port 2772
 EXTENSION Name: AppConfigAgent State: Ready Events: [INVOKE,SHUTDOWN]
 
 we get the config
 INFO [handler] URL "http://localhost:2772/applications/MyTestApplication/environments/MyTestEnvironment/configurations/MyTestProfile"
 
 REPORT RequestId: cd5ccc81-6ff5-4fa2-8a38-e708e833cde9 Duration: 475.24
+```
 
 EXECUTION 2 - WARM STATE
 
+```
 START RequestId: d1f74efe-6ce2-4879-9374-b68535fb8e95 Version: $LATEST
 we get the config
 INFO [handler] URL "http://localhost:2772/applications/MyTestApplication/environments/MyTestEnvironment/configurations/MyTestProfile"
 
 REPORT RequestId: d1f74efe-6ce2-4879-9374-b68535fb8e95 Duration: 3.79 ms
+```
 
 EXECUTION 3 - WARM STATE
 
+```
 START RequestId: 36db9855-74cf-4c3c-a560-c1baae94d96a Version: $LATEST
 we get the config
 INFO [handler] URL "http://localhost:2772/applications/MyTestApplication/environments/MyTestEnvironment/configurations/MyTestProfile"
 
 REPORT RequestId: 36db9855-74cf-4c3c-a560-c1baae94d96a Duration: 3.89 ms
+```
 
 As you can see, now we drop AWS Cache Latency from over 150ms to less than 4ms.
 
