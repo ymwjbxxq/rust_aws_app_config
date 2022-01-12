@@ -16,7 +16,7 @@ Not even AWS updated his page, but RUST [support it](https://awslabs.github.io/a
 ### AppConfig in practise ###
 
 By default, you have 1000 TPS, and in a serverless world, it is easy to reach it.
-Of course, you will not find a trace of this 1000 TPS, but you can request an increase of quota opening a ticket.
+You can request an increase of [quota](https://docs.aws.amazon.com/general/latest/gr/appconfig.html) opening a ticket
 
 After the first request, the profile is cached, and so from now on, you hit the internal cache of AppConfig.
 What I have noticed is that even if you have this in place when you reach the 1000 TPS, you will get an error like
